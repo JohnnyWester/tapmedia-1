@@ -60,7 +60,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $paramsConfig = [
+            ['param1' => 'texture', 'param2' => 'notebook'],
+            ['param1' => 'picture', 'param2' => 'stream'],
+            ['param1' => 'taste', 'param2' => 'command'],
+        ];
+
+        return $this->render('index', [
+            'paramsConfig' => $paramsConfig,
+        ]);
     }
 
     /**

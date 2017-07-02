@@ -38,14 +38,26 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'pattern' => 'click',
+                    'route' => 'click/index',
+                ],
+                [
+                    'pattern' => 'success/<clickId>',
+                    'route' => 'click/success',
+                ],
+                [
+                    'pattern' => 'error/<clickId>',
+                    'route' => 'click/error',
+                ],
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];

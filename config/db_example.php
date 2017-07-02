@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=tapmedia_test',
+    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
     'username' => 'root',
-    'password' => 'h1j2v3f4',
+    'password' => '',
     'charset' => 'utf8',
 ];
