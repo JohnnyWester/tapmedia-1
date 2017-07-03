@@ -29,6 +29,8 @@ class m170630_203008_create_tables_click_and_domains extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
         ], $tableOptions);
+
+        $this->addPrimaryKey('click_id', $this->click, 'id');
     }
 
     public function safeDown()

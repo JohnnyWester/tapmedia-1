@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Click;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -66,8 +67,12 @@ class SiteController extends Controller
             ['param1' => 'taste', 'param2' => 'command'],
         ];
 
+        $models = Click::find()->all();
+
         return $this->render('index', [
             'paramsConfig' => $paramsConfig,
+            'attributeLabels' => Click::getAttributeLabels(),
+            'models' => $models,
         ]);
     }
 

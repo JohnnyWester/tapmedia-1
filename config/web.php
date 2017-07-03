@@ -44,6 +44,10 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
+                    'pattern' => '',
+                    'route' => 'site/index',
+                ],
+                [
                     'pattern' => 'click',
                     'route' => 'click/index',
                 ],

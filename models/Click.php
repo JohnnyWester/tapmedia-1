@@ -42,6 +42,20 @@ class Click extends ActiveRecord
         ];
     }
 
+    public static function getAttributeLabels()
+    {
+        return [
+            'id' => 'Click ID',
+            'ua' => 'User Agent',
+            'ip' => 'User IP',
+            'ref' => 'Referrer',
+            'param1' => 'Param1',
+            'param2' => 'Param2',
+            'error' => 'Error',
+            'bad_domain' => 'Bad domain',
+        ];
+    }
+
     /**
      * Checking of unique click exists in database
      *

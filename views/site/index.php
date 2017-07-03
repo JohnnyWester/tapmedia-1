@@ -1,9 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\Click;
 
 /* @var $this yii\web\View */
 /* @var $paramsConfig array */
+/* @var $attributeLabels array */
+/* @var $models Click */
 
 $this->title = 'My Yii Application';
 ?>
@@ -23,4 +26,50 @@ $this->title = 'My Yii Application';
             </div>
         </div>
     </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">Logged links table</h3>
+        </div>
+        <div id="links">
+            <input class="search form-control" placeholder="Search" />
+
+            <div class="buttons text-center">
+                <button class="sort btn btn-default" data-sort="click-id">Sort by click ID</button>
+                <button class="sort btn btn-default" data-sort="user-agent">Sort by user agent</button>
+                <button class="sort btn btn-default" data-sort="ip">Sort by IP</button>
+                <button class="sort btn btn-default" data-sort="ref">Sort by referrer</button>
+                <button class="sort btn btn-default" data-sort="param-1">Sort by param 1</button>
+                <button class="sort btn btn-default" data-sort="param-2">Sort by param 2</button>
+                <button class="sort btn btn-default" data-sort="error">Sort by error</button>
+                <button class="sort btn btn-default" data-sort="bad-domain">Sort by bad domain</button>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <?php foreach ($attributeLabels as $attributeLabel): ?>
+                            <th><?php echo $attributeLabel ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+
+                <tbody class="list">
+                <?php foreach ($models as $model): ?>
+                    <tr>
+                        <td class="click-id"><?php echo $model->id ?></td>
+                        <td class="user-agent"><?php echo $model->ua ?></td>
+                        <td class="ip"><?php echo $model->ip ?></td>
+                        <td class="ref"><?php echo $model->ref ?></td>
+                        <td class="param-1"><?php echo $model->param1 ?></td>
+                        <td class="param-2"><?php echo $model->param2 ?></td>
+                        <td class="error"><?php echo $model->error ?></td>
+                        <td class="bad-domain"><?php echo $model->bad_domain ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 </div>
