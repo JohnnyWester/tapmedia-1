@@ -15,8 +15,7 @@ class ClickController extends Controller
         $clickExists = Click::clickExists($request, $param1, $param2);
 
         $clickHandlerClassName = $click->getHandler($clickExists);
-        $result = (new $clickHandlerClassName())->run($request, $param1, $param2);
-
+        (new $clickHandlerClassName())->run($request, $param1, $param2);
     }
 
     public function actionSuccess($clickId)
@@ -34,6 +33,7 @@ class ClickController extends Controller
 
         return $this->render('error', [
             'model' => $model,
+            'redirect' => $model->checkBadDomain(),
         ]);
     }
 }

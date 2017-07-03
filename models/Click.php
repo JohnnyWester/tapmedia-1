@@ -105,4 +105,9 @@ class Click extends ActiveRecord
                 break;
         }
     }
+
+    public function checkBadDomain()
+    {
+        return $this->bad_domain == 0 ? false : true;
+    }
 }

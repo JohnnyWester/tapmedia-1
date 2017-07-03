@@ -16,6 +16,13 @@ class ClickExistsHandler implements IHandler
     public function run(Request $request, string $param1, string $param2)
     {
         $model = $this->getClick($request, $param1);
+
+        if ($this->checkReferrerInBadDomains($request->referrer)) {
+            if (!empty($model)) {
+                $model->updateCounters(['bad_domain' => 1]);
+            }
+        }
+
         $this->handleClick($model);
 
         if ($this->saveBadDomain($request->referrer)) {
@@ -49,5 +56,12 @@ class ClickExistsHandler implements IHandler
             ])->one();
 
         return $model;
+    }
+
+    public function checkReferrerInBadDomains($referrer)
+    {
+        $model = BadDomain::findOne(['name' => $referrer]);
+
+        return empty($model) ? false : true;
     }
 }
