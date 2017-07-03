@@ -5,7 +5,6 @@
 /** @var $redirect boolean */
 
 $this->title = 'Error';
-
 ?>
 
 <div class="site-index">

@@ -7,6 +7,7 @@ use app\models\Click;
 /* @var $paramsConfig array */
 /* @var $attributeLabels array */
 /* @var $models Click */
+/* @var $model Click */
 
 $this->title = 'My Yii Application';
 ?>

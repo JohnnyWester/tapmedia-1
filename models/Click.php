@@ -21,7 +21,13 @@ use yii\web\Request;
  */
 class Click extends ActiveRecord
 {
+    /**
+     * Stores class name for handling the click if it exists
+     */
     const CLICK_EXISTS_HANDLER = 'app\models\handlers\ClickExistsHandler';
+    /**
+     * Stores class name for handling the click if it does not exist
+     */
     const CLICK_NOT_EXISTS_HANDLER = 'app\models\handlers\ClickNotExistsHandler';
 
     /**
@@ -32,6 +38,9 @@ class Click extends ActiveRecord
         return '{{%click}}';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -42,6 +51,11 @@ class Click extends ActiveRecord
         ];
     }
 
+    /**
+     * Returns an array with attribute labels of click model
+     *
+     * @return array
+     */
     public static function getAttributeLabels()
     {
         return [
@@ -76,11 +90,24 @@ class Click extends ActiveRecord
         return empty($model) ? false : true;
     }
 
+    /**
+     * Generates unique ID for click model
+     *
+     * @return string
+     */
     public function generateId()
     {
         return uniqid();
     }
 
+    /**
+     * Save click info into database
+     *
+     * @param $request Request
+     * @param $param1 string
+     * @param $param2 string
+     * @return bool|string
+     */
     public static function saveClick($request, $param1, $param2)
     {
         $click = new Click();
@@ -94,6 +121,12 @@ class Click extends ActiveRecord
         return ($click->save()) ? $click->id : false;
     }
 
+    /**
+     * Returns constant with handler class name by condition
+     *
+     * @param $condition boolean
+     * @return string
+     */
     public function getHandler($condition)
     {
         switch ($condition) {
@@ -106,6 +139,11 @@ class Click extends ActiveRecord
         }
     }
 
+    /**
+     * Checks if bad_domain field does not equals to zero
+     *
+     * @return bool
+     */
     public function checkBadDomain()
     {
         return $this->bad_domain == 0 ? false : true;

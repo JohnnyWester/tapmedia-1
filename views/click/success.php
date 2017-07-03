@@ -4,7 +4,6 @@
 /** @var $model \app\models\Click */
 
 $this->title = 'Success';
-
 ?>
 
 <div class="site-index">

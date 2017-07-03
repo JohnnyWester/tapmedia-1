@@ -21,6 +21,9 @@ class BadDomain extends ActiveRecord
         return '{{%bad_domains}}';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

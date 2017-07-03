@@ -8,6 +8,10 @@ use yii\web\Request;
 use app\models\Click;
 use Yii;
 
+/**
+ * Class ClickExistsHandler
+ * @package app\models\handlers
+ */
 class ClickExistsHandler implements IHandler
 {
     /**
@@ -18,25 +22,35 @@ class ClickExistsHandler implements IHandler
         $model = $this->getClick($request, $param1);
 
         if ($this->checkReferrerInBadDomains($request->referrer)) {
-            if (!empty($model)) {
-                $model->updateCounters(['bad_domain' => 1]);
-            }
+            $this->handleClick($model, 'bad_domain');
         }
 
-        $this->handleClick($model);
+        $this->handleClick($model, 'error');
 
         if ($this->saveBadDomain($request->referrer)) {
             Yii::$app->controller->redirect(["error/{$model->id}"]);
         }
     }
 
-    protected function handleClick($model)
+    /**
+     * Handle click by updating counter in database
+     *
+     * @param $model Click
+     * @param $field string
+     */
+    protected function handleClick($model, $field)
     {
         if (!empty($model)) {
-            $model->updateCounters(['error' => 1]);
+            $model->updateCounters([$field => 1]);
         }
     }
 
+    /**
+     * Save referrer address in bad_domain table
+     *
+     * @param $referrer
+     * @return bool
+     */
     protected function saveBadDomain($referrer)
     {
         $badDomain = new BadDomain();
@@ -45,6 +59,13 @@ class ClickExistsHandler implements IHandler
         return $badDomain->save();
     }
 
+    /**
+     * Find model in click table
+     *
+     * @param $request
+     * @param $param1
+     * @return array|null|\yii\db\ActiveRecord
+     */
     protected function getClick($request, $param1)
     {
         $model = Click::find()
@@ -58,6 +79,12 @@ class ClickExistsHandler implements IHandler
         return $model;
     }
 
+    /**
+     * Checks if referrer address exists in database
+     *
+     * @param $referrer
+     * @return bool
+     */
     public function checkReferrerInBadDomains($referrer)
     {
         $model = BadDomain::findOne(['name' => $referrer]);
