@@ -2,12 +2,17 @@
 
 use yii\helpers\Html;
 use app\models\Click;
+use \app\models\BadDomain;
+use \yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $paramsConfig array */
 /* @var $attributeLabels array */
+/* @var $badDomainAttributeLabels array */
 /* @var $models Click */
 /* @var $model Click */
+/* @var $badDomains BadDomain */
+/* @var $badDomain BadDomain */
 
 $this->title = 'My Yii Application';
 ?>
@@ -66,6 +71,42 @@ $this->title = 'My Yii Application';
                         <td class="param-2"><?php echo $model->param2 ?></td>
                         <td class="error"><?php echo $model->error ?></td>
                         <td class="bad-domain"><?php echo $model->bad_domain ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           <div class="row">
+               <h3 class="panel-title text-center">Bad domains table</h3>
+               <a href="<?php echo Url::to(['site/bad-domain']) ?>" class="btn btn-primary btn-custom">Add domain</a>
+           </div>
+        </div>
+        <div id="bad-domains">
+            <input class="search form-control" placeholder="Search" />
+
+            <div class="buttons text-center">
+                <button class="sort btn btn-default" data-sort="id">Sort by ID</button>
+                <button class="sort btn btn-default" data-sort="name">Sort by name</button>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <?php foreach ($badDomainAttributeLabels as $badDomainAttributeLabel): ?>
+                        <th><?php echo $badDomainAttributeLabel ?></th>
+                    <?php endforeach; ?>
+                </tr>
+                </thead>
+
+                <tbody class="list">
+                <?php foreach ($badDomains as $badDomain): ?>
+                    <tr>
+                        <td class="id"><?php echo $badDomain->id ?></td>
+                        <td class="name"><?php echo $badDomain->name ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

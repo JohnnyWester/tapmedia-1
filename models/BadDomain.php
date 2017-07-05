@@ -30,6 +30,37 @@ class BadDomain extends ActiveRecord
             [['name'], 'required'],
             ['id', 'integer'],
             ['name', 'string'],
+            ['name', 'url'],
+            ['name', 'unique', 'targetAttribute' => ['name'], 'message' => 'This URL exists in database.'],
         ];
+    }
+
+    /**
+     * Returns an array with attribute labels of click model
+     *
+     * @return array
+     */
+    public static function getAttributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if (self::find()->where(['name' => $this->name])->exists()) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

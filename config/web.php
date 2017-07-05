@@ -48,6 +48,10 @@ $config = [
                     'route' => 'site/index',
                 ],
                 [
+                    'pattern' => 'add-domain',
+                    'route' => 'site/bad-domain',
+                ],
+                [
                     'pattern' => 'click',
                     'route' => 'click/index',
                 ],

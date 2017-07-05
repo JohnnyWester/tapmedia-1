@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\BadDomain;
 use app\models\Click;
 use Yii;
 use yii\filters\AccessControl;
@@ -68,11 +69,27 @@ class SiteController extends Controller
         ];
 
         $models = Click::find()->all();
+        $badDomains = BadDomain::find()->all();
 
         return $this->render('index', [
             'paramsConfig' => $paramsConfig,
             'attributeLabels' => Click::getAttributeLabels(),
+            'badDomainAttributeLabels' => BadDomain::getAttributeLabels(),
             'models' => $models,
+            'badDomains' => $badDomains,
+        ]);
+    }
+
+    public function actionBadDomain()
+    {
+        $model = new BadDomain();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/site/index']);
+        }
+
+        return $this->render('bad-domain', [
+            'model' => $model,
         ]);
     }
 

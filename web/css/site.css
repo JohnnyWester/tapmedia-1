@@ -118,3 +118,15 @@ a.desc:after {
     margin: 10px;
     width: 98%;
 }
+
+.panel-heading{
+    min-height: 38px;
+    position: relative;
+}
+
+.btn-custom{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    line-height: 1;
+}

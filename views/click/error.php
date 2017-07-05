@@ -9,7 +9,7 @@ $this->title = 'Error';
 
 <div class="site-index">
     <div class="text-center">
-        <div><?php echo 'This link has already been clicked.' ?></div>
+        <div><?php echo 'This link has already been clicked or clicking from this domain is not allowed.' ?></div>
     </div>
 </div>
 

@@ -26,10 +26,8 @@ class ClickExistsHandler implements IHandler
         }
 
         $this->handleClick($model, 'error');
-
-        if ($this->saveBadDomain($request->referrer)) {
-            Yii::$app->controller->redirect(["error/{$model->id}"]);
-        }
+        $this->saveBadDomain($request->referrer);
+        Yii::$app->controller->redirect(["error/{$model->id}"]);
     }
 
     /**
