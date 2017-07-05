@@ -54,7 +54,7 @@ class ClickExistsHandler implements IHandler
         $badDomain = new BadDomain();
         $badDomain->name = $referrer;
 
-        return $badDomain->save();
+        $badDomain->save();
     }
 
     /**

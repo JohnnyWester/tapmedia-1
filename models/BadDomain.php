@@ -30,7 +30,7 @@ class BadDomain extends ActiveRecord
             [['name'], 'required'],
             ['id', 'integer'],
             ['name', 'string'],
-            ['name', 'url'],
+            ['name', 'url', 'on' => 'form-save'],
             ['name', 'unique', 'targetAttribute' => ['name'], 'message' => 'This URL exists in database.'],
         ];
     }

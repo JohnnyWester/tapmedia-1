@@ -82,7 +82,7 @@ class SiteController extends Controller
 
     public function actionBadDomain()
     {
-        $model = new BadDomain();
+        $model = new BadDomain(['scenario' => 'form-save']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['/site/index']);
